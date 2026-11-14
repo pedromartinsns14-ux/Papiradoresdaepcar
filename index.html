@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cronograma de provas CPCAR – 15/12 a 01/02</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#0e1b30;--mute:#5b6a82;--line:#d5deeb;--blue:#17408f;--blue-ink:#fff;--amber:#f0b429;--done:#e3f3e8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1424;--card:#121f36;--ink:#e9eff8;--mute:#9aa9c2;--line:#233453;--blue:#5b8ff0;--blue-ink:#071225;--amber:#f0b429;--done:#143324;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1424;--card:#121f36;--ink:#e9eff8;--mute:#9aa9c2;--line:#233453;--blue:#5b8ff0;--blue-ink:#071225;--amber:#f0b429;--done:#143324;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Barlow,system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 18px 56px}
+h1{font:700 clamp(34px,7vw,56px)/1 "Barlow Condensed","Arial Narrow",sans-serif;margin:0 0 10px;letter-spacing:.01em}
+.sub{color:var(--mute);margin:0 0 28px;max-width:60ch}
+.sub b{color:var(--ink)}
+.week{display:grid;grid-template-columns:150px 1fr;gap:0 20px;margin-bottom:22px;padding-top:18px;border-top:3px solid var(--blue)}
+.wh h2{font:700 30px/1 "Barlow Condensed","Arial Narrow",sans-serif;margin:0}
+.wh p{margin:4px 0 0;color:var(--mute);font-size:14px}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:78px 1fr auto;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.row.done{background:var(--done)}
+.day b{display:block;font:700 26px/1 "Barlow Condensed","Arial Narrow",sans-serif}
+.day span{font-size:13px;color:var(--mute)}
+.t{font-weight:600;font-size:18px}
+.h{font-size:14px;color:var(--mute)}
+.tag{display:inline-block;background:var(--amber);color:#2a1d00;font-size:12px;font-weight:600;padding:1px 8px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.act{display:flex;align-items:center;gap:12px}
+a.btn{background:var(--blue);color:var(--blue-ink);text-decoration:none;font-weight:600;padding:9px 14px;border-radius:6px;white-space:nowrap}
+a.btn:hover{filter:brightness(1.1)}
+a.btn:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+label.ck{font-size:14px;color:var(--mute);display:flex;align-items:center;gap:6px;cursor:pointer}
+input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue)}
+.end{border-top:3px solid var(--blue);padding-top:16px;color:var(--mute)}
+@media (max-width:640px){
+.week{grid-template-columns:1fr}.wh{margin-bottom:10px}
+.row{grid-template-columns:64px 1fr}.act{grid-column:1 / -1;justify-content:space-between}
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Cronograma de provas CPCAR</h1>
+<p class="sub">De <b>15/12</b> a <b>01/02</b>, 13 provas de 2015 a 2027, todas na versão A. Cada prova tem <b>5h30</b> reservadas, das <b>08:00 às 13:30</b>. Clique em “Abrir prova” para ver o PDF.</p>
+<div id="app"></div>
+<p class="end">Segunda-feira, 01/02: sem prova. Use o dia para rever os erros das últimas semanas.</p>
+</main>
+<script>
+var L={2015:"pdfs/cpcar2015.pdf",2016:"pdfs/cpcar2016.pdf",2017:"pdfs/cpcar2017.pdf",2018:"pdfs/cpcar2018.pdf",2019:"pdfs/cpcar2019.pdf",2020:"pdfs/cpcar2020.pdf",2021:"pdfs/cpcar2021.pdf",2022:"pdfs/cpcar2022.pdf",2023:"pdfs/cpcar2023.pdf",2024:"pdfs/cpcar2024.pdf",2025:"pdfs/cpcar2025.pdf",2026:"pdfs/cpcar2026.pdf",2027:"pdfs/cpcar2027.pdf"};
+var W=[
+["Semana 1","15/12 a 20/12",[["Sexta","18/12",2015]]],
+["Semana 2","21/12 a 27/12",[["Sexta","25/12",2016,"Natal"]]],
+["Semana 3","28/12 a 03/01",[["Sexta","01/01",2017,"Ano-Novo"]]],
+["Semana 4","04/01 a 10/01",[["Sexta","08/01",2018]]],
+["Semana 5","11/01 a 17/01",[["Segunda","11/01",2019],["Quarta","13/01",2020],["Sexta","15/01",2021]]],
+["Semana 6","18/01 a 24/01",[["Segunda","18/01",2022],["Quarta","20/01",2023],["Sexta","22/01",2024]]],
+["Semana 7","25/01 a 01/02",[["Segunda","25/01",2025],["Quarta","27/01",2026],["Sexta","29/01",2027]]]
+];
+var done={};
+try{done=JSON.parse(localStorage.getItem("cpcar-feitas")||"{}")||{}}catch(e){done={}}
+function save(){try{localStorage.setItem("cpcar-feitas",JSON.stringify(done))}catch(e){}}
+var app=document.getElementById("app");
+W.forEach(function(w){
+var s=document.createElement("section");s.className="week";
+s.innerHTML='<div class="wh"><h2>'+w[0]+'</h2><p>'+w[1]+'</p></div><div class="rows"></div>';
+var rows=s.querySelector(".rows");
+w[2].forEach(function(d){
+var y=d[2],r=document.createElement("div");r.className="row"+(done[y]?" done":"");
+r.innerHTML='<div class="day"><b>'+d[1]+'</b><span>'+d[0]+'</span></div>'+
+'<div><div class="t">Prova CPCAR '+y+(d[3]?'<span class="tag">'+d[3]+'</span>':'')+'</div><div class="h">Início 08:00, término 13:30 (5h30)</div></div>'+
+'<div class="act"><label class="ck"><input type="checkbox"'+(done[y]?' checked':'')+'> Feita</label><a class="btn" href="'+L[y]+'" target="_blank" rel="noopener">Abrir prova</a></div>';
+r.querySelector("input").addEventListener("change",function(e){done[y]=e.target.checked;r.classList.toggle("done",e.target.checked);save()});
+rows.appendChild(r)});
+app.appendChild(s)});
+</script>
+</body>
+</html>
